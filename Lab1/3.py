@@ -22,7 +22,7 @@ def main():
                 basket.remove(fruit)
                 print(f"Removed {fruit} from basket")
             else:
-                print(f"{fruit} not found in basket!")
+                print(f"{fruit} is not found in basket!")
 
         elif query == "c":
             fruit = input("Enter fruit to check: ").strip()
