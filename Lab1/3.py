@@ -1,38 +1,22 @@
 def main():
-    basket = {"apple", "banana"}
+    # get the number
+    N = int(input("Enter N to get the fib numbers up to N:"))
+    if N <= 0:
+        raise ValueError("N cannot be less than or equal to 0")
+    elif N == 1:
+        print([0])
+    else:
+        # for fast runtime, we can allocate the list first with N zeros
+        fib = [0] * N
+        # set the first index to 1
+        fib[1] = 1
 
-    while True:
-        print(f"Current Basket: {basket}")
-        query = input("Options: (q)uit, (a)dd, (r)remove, (c)heck: ").strip().lower()
-        if query == "q":
-            print("Exiting...")
-            break
+        # we iterate from the 2nd index to N, using the previous 2 elements to compute the next fib
+        for i in range(2, N):
+            fib[i] = fib[i - 1] + fib[i - 2]
 
-        if query == "a":
-            fruit = input("Enter a fruit to add: ").strip()
-            if fruit:  # as in not an empty string ""
-                basket.add(fruit)
-                print(f"Added {fruit} to the basket!")
-            else:
-                print("No fruit entered!")
+        print(fib)
 
-        elif query == "r":
-            fruit = input("Enter a fruit to remove: ").strip()
-            if fruit in basket:
-                basket.remove(fruit)
-                print(f"Removed {fruit} from basket")
-            else:
-                print(f"{fruit} is not found in basket!")
-
-        elif query == "c":
-            fruit = input("Enter fruit to check: ").strip()
-            if fruit in basket:
-                print(f"Yes, {fruit} is in the basket!")
-            else:
-                print(f"No, {fruit} is NOT in the basket!")
-        else:
-            print("Invalid option please try again!")
-        print("-"*20)
 
 if __name__ == "__main__":
     main()
